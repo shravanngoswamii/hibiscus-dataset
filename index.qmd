@@ -1,3 +1,6 @@
 --- 
 pagetitle: "Hibiscus Dataset"
+listing:
+    template: styles/hibiscus.ejs
+    contents: hibiscus.yml
 ---

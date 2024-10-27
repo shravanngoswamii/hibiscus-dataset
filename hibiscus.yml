@@ -1,4 +1,5 @@
 - class: reference-dataset
+  name: Hibiscus Reference Dataset
   total: 50
   default:
     - name: Rosa-Sinensis
@@ -7,11 +8,32 @@
       href: .
   non-default:
     - number: 4
+      name: Rosa-Sinensis
       location: Bardoli
       source: Internet
-      href: .
+      href: https://shravangoswami.com
     - number: 6
+      name: Rosa-Sinensis
       location: Bardoli
       source: Internet
       href: .
 
+- class: reference-dataset
+  name: Hibiscus Rosa-Sinensis Dataset
+  total: 50
+  default:
+    - name: Syriacus
+      location: Surat
+      source: Captured
+      href: .
+  non-default:
+    - number: 4
+      name: Syriacus
+      location: Bardoli
+      source: Internet
+      href: .
+    - number: 6
+      name: Syriacus
+      location: Bardoli
+      source: Internet
+      href: .

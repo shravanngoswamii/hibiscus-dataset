@@ -33,8 +33,9 @@ format:
   html:
     theme:
       light: cosmo
-    css: theming/styles.css
-    toc: true
+    css: styles/style.css
+    toc: false
+    sidebar: false
     smooth-scroll: true
     code-overflow: wrap
     output-block-background: true

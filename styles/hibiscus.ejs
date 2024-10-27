@@ -1,0 +1,119 @@
+```{=html}
+<div>
+  <label for="speciesSelect">Select Species:</label>
+  <select id="speciesSelect" onchange="filterTable()">
+    <option value="">All Species</option>
+  </select>
+  <p id="speciesCount">Total Images: <span id="totalCount">0</span></p>
+
+  <label for="locationSelect">Select Location:</label>
+  <select id="locationSelect" onchange="filterTable()">
+    <option value="">All Locations</option>
+  </select>
+</div>
+
+<table id="hibiscusTable">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Species</th>
+      <th>Location</th>
+      <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (const item of items) { %>
+      <% 
+        const className = item.class; 
+        const defaultData = item.default[0]; 
+      %>
+      <% for (let i = 1; i <= item.total; i++) { 
+          const imageNumber = String(i).padStart(3, '0'); 
+          const imagePath = `hibiscus/${className}/${imageNumber}.jpg`;
+          const nonDefault = item['non-default'].find(nd => nd.number == i);
+          const speciesName = nonDefault ? nonDefault.name : defaultData.name;
+          const location = nonDefault ? nonDefault.location : defaultData.location;
+          const source = nonDefault ? nonDefault.source : defaultData.source;
+          const href = nonDefault ? nonDefault.href : defaultData.href;
+      %>
+      <tr class="data-row" data-species="<%- speciesName %>" data-location="<%- location %>">
+        <td>
+          <img src="<%- imagePath %>" alt="<%- speciesName %>" style="max-width: 100px;">
+        </td>
+        <td><%- speciesName %></td>
+        <td><%- location %></td>
+        <td>
+          <% if (href && href !== '.') { %>
+            <a href="<%- href %>" target="_blank"><%- source %></a>
+          <% } else { %>
+            <%- source %>
+          <% } %>
+        </td>
+      </tr>
+      <% } %>
+    <% } %>
+  </tbody>
+</table>
+
+<script>
+  // JavaScript to populate the dropdowns with options
+  document.addEventListener("DOMContentLoaded", function () {
+    const speciesSet = new Set();
+    const locationSet = new Set();
+
+    <% items.forEach(item => { %>
+      speciesSet.add("<%- item.default[0].name %>");
+      locationSet.add("<%- item.default[0].location %>");
+      <% item['non-default'].forEach(nd => { %>
+        speciesSet.add("<%- nd.name %>");
+        locationSet.add("<%- nd.location %>");
+      <% }); %>
+    <% }); %>
+
+    const speciesSelect = document.getElementById("speciesSelect");
+    speciesSet.forEach(species => {
+      const option = document.createElement("option");
+      option.value = species;
+      option.textContent = species;
+      speciesSelect.appendChild(option);
+    });
+
+    const locationSelect = document.getElementById("locationSelect");
+    locationSet.forEach(location => {
+      const option = document.createElement("option");
+      option.value = location;
+      option.textContent = location;
+      locationSelect.appendChild(option);
+    });
+
+    // Set the initial count to total entries
+    document.getElementById('totalCount').textContent = document.querySelectorAll('.data-row').length;
+  });
+
+  function filterTable() {
+    const speciesFilter = document.getElementById('speciesSelect').value;
+    const locationFilter = document.getElementById('locationSelect').value;
+    const rows = document.querySelectorAll('#hibiscusTable .data-row');
+
+    let visibleCount = 0;
+
+    rows.forEach(row => {
+        const species = row.getAttribute('data-species');
+        const location = row.getAttribute('data-location');
+        
+        const speciesMatch = speciesFilter === '' || species === speciesFilter;
+        const locationMatch = locationFilter === '' || location === locationFilter;
+
+        if (speciesMatch && locationMatch) {
+            row.style.display = '';
+            visibleCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+
+    // Update the total entries count display
+    document.getElementById('totalCount').textContent = visibleCount > 0 ? visibleCount : rows.length;
+  }
+</script>
+```

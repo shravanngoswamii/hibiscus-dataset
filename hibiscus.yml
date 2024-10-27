@@ -1,0 +1,17 @@
+- class: reference-dataset
+  total: 50
+  default:
+    - name: Rosa-Sinensis
+      location: Surat
+      source: Captured
+      href: .
+  non-default:
+    - number: 4
+      location: Bardoli
+      source: Internet
+      href: .
+    - number: 6
+      location: Bardoli
+      source: Internet
+      href: .
+

@@ -1,0 +1,40 @@
+project:
+  type: website
+  preview:
+    port: 4200
+    browser: true
+
+website:
+  title: "Hibiscus Dataset"
+  site-path: "/"
+  search: 
+    location: navbar
+    type: overlay
+  navbar:
+    left:
+      - text: Dataset
+        href: .
+    tools:
+      - icon: github
+        text: GitHub
+        href:
+  
+  page-footer:
+    center: |
+      Hibiscus Dataset
+
+  back-to-top-navigation: true
+  # repo-url:
+  # repo-actions: [edit, issue]
+  # repo-link-target: _blank
+  page-navigation: true
+
+format:
+  html:
+    theme:
+      light: cosmo
+    css: theming/styles.css
+    toc: true
+    smooth-scroll: true
+    code-overflow: wrap
+    output-block-background: true

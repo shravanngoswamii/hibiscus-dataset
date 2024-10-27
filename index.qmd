@@ -1,4 +1,3 @@
 --- 
 title: "Hibiscus Dataset"
-author: "Shravan Goswami"
 ---

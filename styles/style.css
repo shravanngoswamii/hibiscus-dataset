@@ -49,6 +49,10 @@ a:hover {
     color: #388E3C;
 }
 
+nav a:hover {
+    text-decoration: none;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
     table, thead, tbody, th, td, tr {

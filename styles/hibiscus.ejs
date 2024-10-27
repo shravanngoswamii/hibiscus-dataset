@@ -56,7 +56,6 @@
 </table>
 
 <script>
-  // JavaScript to populate the dropdowns with options
   document.addEventListener("DOMContentLoaded", function () {
     const speciesSet = new Set();
     const locationSet = new Set();
@@ -86,7 +85,6 @@
       locationSelect.appendChild(option);
     });
 
-    // Set the initial count to total entries
     document.getElementById('totalCount').textContent = document.querySelectorAll('.data-row').length;
   });
 
@@ -112,7 +110,6 @@
         }
     });
 
-    // Update the total entries count display
     document.getElementById('totalCount').textContent = visibleCount > 0 ? visibleCount : rows.length;
   }
 </script>
